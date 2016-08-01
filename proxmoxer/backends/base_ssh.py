@@ -45,9 +45,9 @@ class ProxmoxBaseSSHSession(object):
         stdout, stderr = self._exec(full_cmd)
         try:
             status_code = int(stderr.split()[0])
+            return Response(stdout, status_code)
         except:
-            status_code = 500
-        return Response(stdout, status_code)
+            return Response(stderr, 500)
 
     def upload_file_obj(self, file_obj, remote_path):
         raise NotImplementedError()
