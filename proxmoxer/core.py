@@ -9,10 +9,6 @@ import logging
 
 # Python 3 compatibility:
 try:
-    import httplib
-except ImportError:  # py3
-    from http import client as httplib
-try:
     import urlparse
 except ImportError:  # py3
     from urllib import parse as urlparse

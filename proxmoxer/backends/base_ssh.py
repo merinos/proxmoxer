@@ -45,7 +45,10 @@ class ProxmoxBaseSSHSession(object):
         stdout, stderr = self._exec(full_cmd)
         try:
             status_code = int(stderr.split()[0])
-            return Response(stdout, status_code)
+            if status_code >= 400:
+                return Response(stderr, status_code)
+            else:
+                return Response(stdout, status_code)
         except:
             return Response(stderr, 500)
 
